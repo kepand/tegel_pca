@@ -3,12 +3,7 @@
 # sediment cores were taken at Lake Tegel on 30.09.15
 # TEG-1 deepest lake site, 2 near PEP, 3 Tegelort, 4 outer range of main basin
 
-<<<<<<< Updated upstream
 # loading of additional packages for plotting
-=======
-# Testing testing, 1, 2, 3...
-
->>>>>>> Stashed changes
 library(shape) # just plots nice arrows and circles
 library(vegan)
 
