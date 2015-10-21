@@ -52,7 +52,8 @@ rgb(my.colorRamp.fct(0.5),maxColorValue=255)
 # PCA biplots #
 # for a DISTANCE BIPLOT (focus is on sites, "scaling 1")
 # each principal component has variance given by eigenvalue, loadings remain unscaled
-layout(matrix(1:4,2,2))
+
+layout(matrix(c(1,2,3,4,5,5), nrow = 3, ncol = 2, byrow=TRUE), heights = c(0.4, 0.4, 0.2))
 xsi<-c(-10,10)
 ysi<-c(-5,5)
 ext<-7
@@ -94,7 +95,8 @@ Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="darkgreen",arr.length=arleng)
 # circle shows equilibrium, arrows that are longer than circle are more important for PCA
 text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
 
-
+plot(1, type = "n", axes=FALSE, xlab="", ylab="")
+legend("center", pch=21, pt.bg = c("green", "yellow", "red"), legend=c("Top", "Mid", "Bottom"))
 
 ###############
 # CORRELATION BIPLOT
