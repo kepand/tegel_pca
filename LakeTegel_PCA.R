@@ -49,6 +49,21 @@ my.colorRamp.fct(0.5)
 rgb(my.colorRamp.fct(0.5),maxColorValue=255)
 
 ###############
+# Check importance of PCs
+
+layout(matrix(1:4,2,2))
+
+pca1.pct<-100*round(summary(pca1)$importance[2,],3)          
+barplot(pca1.pct, main="Deepest Site")
+pca2.pct<-100*round(summary(pca2)$importance[2,],3)          
+barplot(pca2.pct, main="P Elimination Plant")
+pca3.pct<-100*round(summary(pca3)$importance[2,],3)          
+barplot(pca3.pct, main="River")
+pca4.pct<-100*round(summary(pca4)$importance[2,],3)          
+barplot(pca4.pct, main = "Main Basin")
+# impression that only for TEG1 both PC1 and PC2 are important
+
+###############
 # PCA biplots #
 # for a DISTANCE BIPLOT (focus is on sites, "scaling 1")
 # each principal component has variance given by eigenvalue, loadings remain unscaled
@@ -177,6 +192,15 @@ barplot(loadings1[,1],ylim=c(-0.3,0.3))
 barplot(loadings2[,1],ylim=c(-0.3,0.3))
 barplot(loadings3[,1],ylim=c(-0.3,0.3))
 barplot(loadings4[,1],ylim=c(-0.3,0.3))
+# PEP + basin look similar
+
+# Comparison of PC2 over all elements for all cores
+layout(matrix(1:4,2,2))
+barplot(loadings1[,2],ylim=c(-0.3,0.3))
+barplot(loadings2[,2],ylim=c(-0.3,0.3))
+barplot(loadings3[,2],ylim=c(-0.3,0.3))
+barplot(loadings4[,2],ylim=c(-0.3,0.3))
+# deepest + river look similar
 
 # Comparison of PC1 over the depth for all cores in one figure
 layout(1)
