@@ -3,16 +3,18 @@
 # sediment cores were taken at Lake Tegel on 30.09.15
 # TEG-1 deepest lake site, 2 near PEP, 3 Tegelort, 4 outer range of main basin
 
+# loading of additional packages for plotting
 library(shape) # just plots nice arrows and circles
 library(vegan)
-layout(1)
 
+# loading of data sets for each sediment core
 setwd("D:/work/data/Hupfer") # work directory
 TEG1<-read.table(file="PCA/TEG1_1mm.txt",header=T,sep="",skip=2) 
 TEG2<-read.table(file="PCA/TEG2_1mm.txt",header=T,sep="",skip=2) 
 TEG3<-read.table(file="PCA/TEG3_1mm.txt",header=T,sep="",skip=2) 
 TEG4<-read.table(file="PCA/TEG4_1mm.txt",header=T,sep="",skip=2) 
 
+# calls sub function and calculates pca
 a<-myfunction(TEG1)
 pca1<-a[[1]]
 scores1<-pca1$x
@@ -41,22 +43,13 @@ loadings4<-pca4$rotation
 d4<-a[[2]]
 T4<-a[[3]]
 
-# for plotting as color
+# for plotting as color, creating color ramp to have a transition from green (upper part) to red (lower part)
 my.colorRamp.fct<-colorRamp(c("green","yellow","red")) # custom-built color ramp
 my.colorRamp.fct(0.5)
 rgb(my.colorRamp.fct(0.5),maxColorValue=255)
 
 as.rgb.channels<-my.colorRamp.fct(decostand(d,method="range"))
 d1.colors<-rgb(as.rgb.channels,maxColorValue=255)
-
-# diagnostics for percentage of variance explained (how many axes should be kept?)
-# plots component number against variance represented by this component
-screeplot(pca1,npcs=length(pca1$sdev),type = "lines") # keep 2 dimensions bc. 3rd is quite a drop already and same as 4th, sdev
-# proportion of variance
-pca1.pct<-100*round(summary(pca1)$importance[2,],3)          
-barplot(pca1.pct)
-# -> the first 3-4 PCs seem useful, and just PC1 and PC2 alone are already explaining a lot of overall variance
-# note also that eigenvalue of PC5 drops <1, so PC5 contributes less than one original variable (Kaiser-Guttman criterion)
 
 ###############
 # PCA biplots #
