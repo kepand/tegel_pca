@@ -8,7 +8,7 @@ library(shape) # just plots nice arrows and circles
 library(vegan)
 
 # loading of data sets for each sediment core
-setwd("D:/work/data/Hupfer") # work directory
+# setwd("D:/work/data/Hupfer") # work directory
 TEG1<-read.table(file="PCA/TEG1_1mm.txt",header=T,sep="",skip=2) 
 TEG2<-read.table(file="PCA/TEG2_1mm.txt",header=T,sep="",skip=2) 
 TEG3<-read.table(file="PCA/TEG3_1mm.txt",header=T,sep="",skip=2) 
@@ -48,9 +48,6 @@ my.colorRamp.fct<-colorRamp(c("green","yellow","red")) # custom-built color ramp
 my.colorRamp.fct(0.5)
 rgb(my.colorRamp.fct(0.5),maxColorValue=255)
 
-as.rgb.channels<-my.colorRamp.fct(decostand(d,method="range"))
-d1.colors<-rgb(as.rgb.channels,maxColorValue=255)
-
 ###############
 # PCA biplots #
 # for a DISTANCE BIPLOT (focus is on sites, "scaling 1")
@@ -63,7 +60,7 @@ arleng<-0.15
 
 as.rgb.channels<-my.colorRamp.fct(decostand(d1,method="range"))
 peak.colors<-rgb(as.rgb.channels,maxColorValue=255)
-plot(scores1[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi)#, xlim = c(-10,10),ylim=c(-8,8)) # asp=1 x and y are equally scaled
+plot(scores1[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi, main="Deepest Site") # asp=1 x and y are equally scaled
 arrows<-loadings1*ext # with extension factor to get nice graphs
 plotcircle(r=7*sqrt(2/ncol(T1)),lcol="blue") # circle of equilibrium contribution (equal contribution to all PCA-dimensions)
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="darkgreen",arr.length=arleng)
@@ -72,7 +69,7 @@ text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
 
 as.rgb.channels<-my.colorRamp.fct(decostand(d2,method="range"))
 peak.colors<-rgb(as.rgb.channels,maxColorValue=255)
-plot(scores2[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi)#, xlim = c(-10,10),ylim=c(-8,8)) # asp=1 x and y are equally scaled
+plot(scores2[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi, main="P Elimination Plant")# asp=1 x and y are equally scaled
 arrows<-loadings2*ext # with extension factor to get nice graphs
 plotcircle(r=7*sqrt(2/ncol(T2)),lcol="blue") # circle of equilibrium contribution (equal contribution to all PCA-dimensions)
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="darkgreen",arr.length=arleng)
@@ -81,7 +78,7 @@ text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T2),cex=1.5)
 
 as.rgb.channels<-my.colorRamp.fct(decostand(d3,method="range"))
 peak.colors<-rgb(as.rgb.channels,maxColorValue=255)
-plot(scores3[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi) #, xlim = c(-10,10),ylim=c(-8,8)) # asp=1 x and y are equally scaled
+plot(scores3[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi, main="River") # asp=1 x and y are equally scaled
 arrows<-loadings3*ext # with extension factor to get nice graphs
 plotcircle(r=7*sqrt(2/ncol(T3)),lcol="blue") # circle of equilibrium contribution (equal contribution to all PCA-dimensions)
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="darkgreen",arr.length=arleng)
@@ -90,12 +87,14 @@ text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
 
 as.rgb.channels<-my.colorRamp.fct(decostand(d4,method="range"))
 peak.colors<-rgb(as.rgb.channels,maxColorValue=255)
-plot(scores4[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi) # asp=1 x and y are equally scaled
+plot(scores4[,1:2],asp=1,pch=21,bg=peak.colors, xlim = xsi,ylim=ysi, main = "Main Basin") # asp=1 x and y are equally scaled
 arrows<-loadings4*ext # with extension factor to get nice graphs
 plotcircle(r=7*sqrt(2/ncol(T4)),lcol="blue") # circle of equilibrium contribution (equal contribution to all PCA-dimensions)
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="darkgreen",arr.length=arleng)
 # circle shows equilibrium, arrows that are longer than circle are more important for PCA
 text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
+
+
 
 ###############
 # CORRELATION BIPLOT
