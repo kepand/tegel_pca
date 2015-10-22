@@ -3,12 +3,16 @@
 # sediment cores were taken at Lake Tegel on 30.09.15
 # TEG-1 deepest lake site, 2 near PEP, 3 Tegelort, 4 outer range of main basin
 
+rm(list=ls(all=TRUE))
+
 # loading of additional packages for plotting
 library(shape) 
 library(vegan)
 
 # loading of data sets for each sediment core
 setwd("D:/work/data/Hupfer") # work directory, change to own one if it differs from default
+source("D:/work/data/Hupfer/PCA/github/SubLakeTegel_PCA.R", echo=T)
+
 TEG1<-read.table(file="PCA/TEG1_1mm.txt",header=T,sep="",skip=2) 
 TEG2<-read.table(file="PCA/TEG2_1mm.txt",header=T,sep="",skip=2) 
 TEG3<-read.table(file="PCA/TEG3_1mm.txt",header=T,sep="",skip=2) 

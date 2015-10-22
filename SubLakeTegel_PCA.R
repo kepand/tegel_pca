@@ -1,5 +1,3 @@
-rm(list=ls(all=TRUE))
-
 myfunction <- function(DATA){
 
 d<-c(1:nrow(DATA))  
