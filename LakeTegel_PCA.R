@@ -131,7 +131,7 @@ text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
 layout(matrix(1:4,2,2))
 
 var(scores1[,1]/pca1$sdev[1]) # just demo
-plot(scores1[,1]/pca1$sdev[1],scores1[,2]/pca1$sdev[2],pch=21,bg=peak.colors,asp=1)
+plot(scores1[,1]/pca1$sdev[1],scores1[,2]/pca1$sdev[2],pch=21,bg=peak.colors,asp=1, main="Deepest Site")
 # loadings are weighted by sqrt(eigenvalues) (multiplied by sqrt(eigenvalues))
 arrows<-loadings1*matrix(pca1$sdev,nrow=nrow(loadings1),ncol=ncol(loadings1),byrow=TRUE) # scaling by STD
 arrows<-arrows*2 # choose extension factor
@@ -143,7 +143,7 @@ Arrows(x0=0,y0=0,x1=structure[,1],y1=structure[,2],col="red")
 text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T1),cex=1.5)
 
 var(scores2[,1]/pca2$sdev[1]) 
-plot(scores2[,1]/pca2$sdev[1],scores2[,2]/pca2$sdev[2],pch=21,bg=peak.colors,asp=1)
+plot(scores2[,1]/pca2$sdev[1],scores2[,2]/pca2$sdev[2],pch=21,bg=peak.colors,asp=1, main="P Elimination Plant")
 arrows<-loadings2*matrix(pca2$sdev,nrow=nrow(loadings2),ncol=ncol(loadings2),byrow=TRUE) 
 arrows<-arrows*2 
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="purple")
@@ -153,7 +153,7 @@ Arrows(x0=0,y0=0,x1=structure[,1],y1=structure[,2],col="red")
 text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T2),cex=1.5)
 
 var(scores3[,1]/pca3$sdev[1]) 
-plot(scores3[,1]/pca3$sdev[1],scores3[,2]/pca3$sdev[2],pch=21,bg=peak.colors,asp=1)
+plot(scores3[,1]/pca3$sdev[1],scores3[,2]/pca3$sdev[2],pch=21,bg=peak.colors,asp=1, main="River")
 arrows<-loadings3*matrix(pca3$sdev,nrow=nrow(loadings3),ncol=ncol(loadings3),byrow=TRUE) 
 arrows<-arrows*2 
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="purple")
@@ -163,7 +163,7 @@ Arrows(x0=0,y0=0,x1=structure[,1],y1=structure[,2],col="red")
 text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T3),cex=1.5)
 
 var(scores4[,1]/pca4$sdev[1])
-plot(scores4[,1]/pca4$sdev[1],scores4[,2]/pca4$sdev[2],pch=21,bg=peak.colors,asp=1)
+plot(scores4[,1]/pca4$sdev[1],scores4[,2]/pca4$sdev[2],pch=21,bg=peak.colors,asp=1, main="Main Basin")
 arrows<-loadings4*matrix(pca4$sdev,nrow=nrow(loadings4),ncol=ncol(loadings4),byrow=TRUE) 
 arrows<-arrows*2 
 Arrows(x0=0,y0=0,x1=arrows[,1],y1=arrows[,2],col="purple")
@@ -177,29 +177,29 @@ text(x=arrows[,1]*1.3,y=arrows[,2]*1.2,labels=names(T4),cex=1.5)
 ###############
 # Comparison of PC1 over the depth for all cores
 layout(matrix(1:4,2,2))
-plot(scores1[,1],d1,ylim = rev(c(0,length(d1))))
+plot(scores1[,1],d1,ylim = rev(c(0,length(d1))), main="Deepest Site")
 lines(scores1[,1],d1,ylim = rev(c(0,length(d1))))
-plot(scores2[,1],d2,ylim = rev(c(0,length(d2))))
+plot(scores2[,1],d2,ylim = rev(c(0,length(d2))), main="P Elimination Plant")
 lines(scores2[,1],d2,ylim = rev(c(0,length(d2))))
-plot(scores3[,1],d3,ylim = rev(c(0,length(d3))))
+plot(scores3[,1],d3,ylim = rev(c(0,length(d3))), main="River")
 lines(scores3[,1],d3,ylim = rev(c(0,length(d3))))
-plot(scores4[,1],d4,ylim = rev(c(0,length(d4))))
+plot(scores4[,1],d4,ylim = rev(c(0,length(d4))), main="Main Basin")
 lines(scores4[,1],d4,ylim = rev(c(0,length(d4))))
 
 # Comparison of PC1 over all elements for all cores
 layout(matrix(1:4,2,2))
-barplot(loadings1[,1],ylim=c(-0.3,0.3))
-barplot(loadings2[,1],ylim=c(-0.3,0.3))
-barplot(loadings3[,1],ylim=c(-0.3,0.3))
-barplot(loadings4[,1],ylim=c(-0.3,0.3))
+barplot(loadings1[,1],ylim=c(-0.3,0.3), main="Deepest Site")
+barplot(loadings2[,1],ylim=c(-0.3,0.3), main="P Elimination Plant")
+barplot(loadings3[,1],ylim=c(-0.3,0.3), main="River")
+barplot(loadings4[,1],ylim=c(-0.3,0.3), main="Main Basin")
 # PEP + basin look similar
 
 # Comparison of PC2 over all elements for all cores
 layout(matrix(1:4,2,2))
-barplot(loadings1[,2],ylim=c(-0.3,0.3))
-barplot(loadings2[,2],ylim=c(-0.3,0.3))
-barplot(loadings3[,2],ylim=c(-0.3,0.3))
-barplot(loadings4[,2],ylim=c(-0.3,0.3))
+barplot(loadings1[,2],ylim=c(-0.3,0.3), main="Deepest Site")
+barplot(loadings2[,2],ylim=c(-0.3,0.3), main="P Elimination Plant")
+barplot(loadings3[,2],ylim=c(-0.3,0.3), main="River")
+barplot(loadings4[,2],ylim=c(-0.3,0.3), main="Main Basin")
 # deepest + river look similar
 
 # Comparison of PC1 over the depth for all cores in one figure
